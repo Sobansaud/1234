@@ -3917,6 +3917,56 @@
 
 
 
+// export interface PageProps {
+//   params: Params;  // Directly use Params here instead of Promise<Params>
+// }
+
+// const Page: React.FC<PageProps> = ({ params }) => {
+//   const [resolvedParams, setResolvedParams] = useState<Params | null>(null);
+//   const [BikeData, setBikeData] = useState<BikeDataType | null>(null);
+//   const [btnAnim, setBtnAnim] = useState(false);
+//   const [slide, setSlide] = useState(0);
+//   const [leftDis, setLeftDis] = useState(true);
+//   const [rightDis, setRightDis] = useState(false);
+//   const [btnDis, setBtnDis] = useState(false);
+//   const [startAnimate, setStartAnimate] = useState(false);
+//   const [featureDis, setFeatureDis] = useState(false);
+//   const [starsArrangment, setStarsArrangment] = useState<string[]>([]);
+//   const [BikeFeauters, setBikeFeauters] = useState<BikeFeautersType[] | null>(null);
+
+//   // Resolve params immediately (no need to wait for Promise here)
+//   useEffect(() => {
+//     setResolvedParams(params);  // Directly use the passed params
+//   }, [params]);
+
+//   useEffect(() => {
+//     if (resolvedParams?.manufacture && resolvedParams?.bikes) {
+//       const bikeData = checkBikeData(resolvedParams.manufacture, resolvedParams.bikes);
+//       setBikeData(bikeData);
+//     }
+//   }, [resolvedParams]);
+
+//   const checkBikeData = (manufacture: string, bikes: string): BikeDataType | null => {
+//     let selectedModel: BikeDataType[] = [];
+//     switch (manufacture) {
+//       case "hayabusa":
+//         selectedModel = hayabusaBikeData;
+//         break;
+//       case "kawasaki":
+//         selectedModel = kawasakiBikeData;
+//         break;
+//       case "royalenfield":
+//         selectedModel = royalEnfieldBikeData;
+//         break;
+//       default:
+//         return null;
+//     }
+//     const selectedBike = selectedModel.find((val) => val.route === bikes);
+//     return selectedBike || selectedModel[0];
+//   };
+
+
+
 
 
 
@@ -3967,12 +4017,216 @@ interface BikeFeautersType {
   name: string;
 }
 
+
+// export interface PageProps {
+//   params: Params // Adjust for Promise type
+// }
+
+// const Page: React.FC<PageProps> =  ({ params }) => {
+//   const resolvedParams =  params; // Resolve the promise here
+//   const [BikeData, setBikeData] = useState<BikeDataType | null>(null);
+//   const [btnAnim, setBtnAnim] = useState(false);
+//   const [slide, setSlide] = useState(0);
+//   const [leftDis, setLeftDis] = useState(true);
+//   const [rightDis, setRightDis] = useState(false);
+//   const [btnDis, setBtnDis] = useState(false);
+//   const [startAnimate, setStartAnimate] = useState(false);
+//   const [featureDis, setFeatureDis] = useState(false);
+//   const [starsArrangment, setStarsArrangment] = useState<string[]>([]);
+//   const [BikeFeauters, setBikeFeauters] = useState<BikeFeautersType[] | null>(null);
+
+  
+//     useEffect(() => {
+//       if (params.manufacture && params.bikes) {
+//         const bikeData = checkBikeData(params.manufacture, params.bikes);
+//         setBikeData(bikeData);
+//       }
+//     }, [params]);
+
+//   const checkBikeData = (manufacture: string, bikes: string): BikeDataType | null => {
+//     let selectedModel: BikeDataType[] = [];
+//     switch (manufacture) {
+//       case "hayabusa":
+//         selectedModel = hayabusaBikeData;
+//         break;
+//       case "kawasaki":
+//         selectedModel = kawasakiBikeData;
+//         break;
+//       case "royalenfield":
+//         selectedModel = royalEnfieldBikeData;
+//         break;
+//       default:
+//         return null;
+//     }
+//     const selectedBike = selectedModel.find((val) => val.route === bikes);
+//     return selectedBike || selectedModel[0];
+//   };
+
+ 
+
+
+// export interface PageProps {
+//   params: Params; // Adjusted type without Promise
+// }
+
+// const Page: React.FC<PageProps> = ({ params }) => {
+//   const [BikeData, setBikeData] = useState<BikeDataType | null>(null);
+//   const [btnAnim, setBtnAnim] = useState(false);
+//   const [slide, setSlide] = useState(0);
+//   const [leftDis, setLeftDis] = useState(true);
+//   const [rightDis, setRightDis] = useState(false);
+//   const [btnDis, setBtnDis] = useState(false);
+//   const [startAnimate, setStartAnimate] = useState(false);
+//   const [featureDis, setFeatureDis] = useState(false);
+//   const [starsArrangment, setStarsArrangment] = useState<string[]>([]);
+//   const [BikeFeauters, setBikeFeauters] = useState<BikeFeautersType[] | null>(null);
+
+//   // Fetch the bike data based on the params
+//   useEffect(() => {
+//     if (params.manufacture && params.bikes) {
+//       const bikeData = checkBikeData(params.manufacture, params.bikes);
+//       setBikeData(bikeData);
+//     }
+//   }, [params]);
+
+//   // Function to fetch bike data for the given manufacturer and bike route
+//   const checkBikeData = (manufacture: string, bikes: string): BikeDataType | null => {
+//     let selectedModel: BikeDataType[] = [];
+//     switch (manufacture) {
+//       case "hayabusa":
+//         selectedModel = hayabusaBikeData;
+//         break;
+//       case "kawasaki":
+//         selectedModel = kawasakiBikeData;
+//         break;
+//       case "royalenfield":
+//         selectedModel = royalEnfieldBikeData;
+//         break;
+//       default:
+//         return null;
+//     }
+//     const selectedBike = selectedModel.find((val) => val.route === bikes);
+//     return selectedBike || selectedModel[0]; // Default to the first bike if no match is found
+//   };
+
+
+
+
+
+
+
+
+
+
+//   // Add selected bike to cart
+//   const addToCart = () => {
+//     if (typeof window !== "undefined") {
+//       let data = localStorage.getItem("cartData");
+//       if (!data) {
+//         localStorage.setItem("cartData", "[]");
+//         data = "[]";
+//       }
+//       const cartArray = JSON.parse(data);
+//       if (BikeData) {
+//         cartArray.push(BikeData);
+//       }
+//       localStorage.setItem("cartData", JSON.stringify(cartArray));
+//       localStorage.setItem("route", `/Inventory/${resolvedParams?.manufacture}`);
+//     }
+//   };
+
+//   // Scroll to the top of the page
+//   const scrollToTop = () => {
+//     setFeatureDis((val) => !val);
+//     window.scrollTo({
+//       top: 0,
+//       behavior: "smooth",
+//     });
+//   };
+
+//   useEffect(() => {
+//     if (BikeData?.pictures?.length) {
+//       setLeftDis(slide === 0);
+//       setRightDis(slide === BikeData.pictures.length - 1);
+//     } else {
+//       setLeftDis(true);
+//       setRightDis(true);
+//     }
+
+//     setStartAnimate(true);
+//   }, [slide, BikeData]);
+
+//   useEffect(() => {
+//     ratingStarsArrangment();
+//     setBikeFeauters(shufflingFeatures(BikeFeautersData));
+
+//     if (typeof window !== "undefined") {
+//       const storedCartData = localStorage.getItem("cartData");
+//       if (storedCartData) {
+//         const data: BikeDataType[] = JSON.parse(storedCartData);
+//         if (data.some((val) => resolvedParams?.bikes === val.route)) {
+//           addBikeHandler();
+//         }
+//       }
+//     }
+//   }, [BikeData]);
+
+//   const setReportPercent = () => {
+//     let count = 0;
+//     setReport(BikeData!.features).data.forEach((val) => {
+//       count += val.percentage;
+//     });
+//     return count / 50;
+//   };
+
+//   const ratingStarsArrangment = () => {
+//     const starsData: string[] = ["full", "full"];
+//     if (starsData.length <= 5) {
+//       if (BikeData?.features === "A" || BikeData?.features === "E") {
+//         starsData.push("half", "empty", "empty");
+//       } else if (BikeData?.features === "C" || BikeData?.features === "J") {
+//         starsData.push("full", "full", "half");
+//       } else if (BikeData?.features === "H" || BikeData?.features === "D") {
+//         starsData.push("full", "half", "empty");
+//       } else if (BikeData?.features === "B" || BikeData?.features === "F") {
+//         starsData.push("full", "full", "empty");
+//       } else {
+//         starsData.push("full", "full", "full");
+//       }
+//     }
+//     setStarsArrangment(starsData.slice(0, 5));
+//   };
+
+//   const slideController = (direction: string) => {
+//     direction === "left" ? setSlide(slide - 1) : setSlide(slide + 1);
+//   };
+
+//   const addBikeHandler = () => {
+//     setBtnDis(true);
+//     setTimeout(() => {
+//       setBtnAnim(true);
+//     }, 100);
+//   };
+
+//   if (!BikeData) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+//     <div className="relative bg-black h-auto w-full pt-16 flex flex-row-reverse gap-1 overflow-hidden">
+//       <div
+//         className="fixed mmd:hidden inline-block h-10 w-10 z-[100] bottom-5 right-5 bg-no-repeat bg-center bg-cover bg-[url('/feature-icon.svg')] cursor-pointer"
+//         onClick={scrollToTop}
+//       ></div>
+
+
+
+
 export interface PageProps {
-  params: Params;  // Directly use Params here instead of Promise<Params>
+  params: Params;
 }
 
 const Page: React.FC<PageProps> = ({ params }) => {
-  const [resolvedParams, setResolvedParams] = useState<Params | null>(null);
   const [BikeData, setBikeData] = useState<BikeDataType | null>(null);
   const [btnAnim, setBtnAnim] = useState(false);
   const [slide, setSlide] = useState(0);
@@ -3984,17 +4238,12 @@ const Page: React.FC<PageProps> = ({ params }) => {
   const [starsArrangment, setStarsArrangment] = useState<string[]>([]);
   const [BikeFeauters, setBikeFeauters] = useState<BikeFeautersType[] | null>(null);
 
-  // Resolve params immediately (no need to wait for Promise here)
   useEffect(() => {
-    setResolvedParams(params);  // Directly use the passed params
-  }, [params]);
-
-  useEffect(() => {
-    if (resolvedParams?.manufacture && resolvedParams?.bikes) {
-      const bikeData = checkBikeData(resolvedParams.manufacture, resolvedParams.bikes);
+    if (params.manufacture && params.bikes) {
+      const bikeData = checkBikeData(params.manufacture, params.bikes);
       setBikeData(bikeData);
     }
-  }, [resolvedParams]);
+  }, [params]);
 
   const checkBikeData = (manufacture: string, bikes: string): BikeDataType | null => {
     let selectedModel: BikeDataType[] = [];
@@ -4015,40 +4264,18 @@ const Page: React.FC<PageProps> = ({ params }) => {
     return selectedBike || selectedModel[0];
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Add selected bike to cart
   const addToCart = () => {
     if (typeof window !== "undefined") {
-      let data = localStorage.getItem("cartData");
-      if (!data) {
-        localStorage.setItem("cartData", "[]");
-        data = "[]";
-      }
+      let data = localStorage.getItem("cartData") || "[]";
       const cartArray = JSON.parse(data);
       if (BikeData) {
         cartArray.push(BikeData);
       }
       localStorage.setItem("cartData", JSON.stringify(cartArray));
-      localStorage.setItem("route", `/Inventory/${resolvedParams?.manufacture}`);
+      localStorage.setItem("route", `/Inventory/${params.manufacture}`);
     }
   };
 
-  // Scroll to the top of the page
   const scrollToTop = () => {
     setFeatureDis((val) => !val);
     window.scrollTo({
@@ -4065,46 +4292,59 @@ const Page: React.FC<PageProps> = ({ params }) => {
       setLeftDis(true);
       setRightDis(true);
     }
-
     setStartAnimate(true);
   }, [slide, BikeData]);
+  
+//   useEffect(() => {
+//     ratingStarsArrangment();
+//     setBikeFeauters(shufflingFeatures(BikeFeautersData));
 
   useEffect(() => {
     ratingStarsArrangment();
     setBikeFeauters(shufflingFeatures(BikeFeautersData));
-
     if (typeof window !== "undefined") {
       const storedCartData = localStorage.getItem("cartData");
       if (storedCartData) {
         const data: BikeDataType[] = JSON.parse(storedCartData);
-        if (data.some((val) => resolvedParams?.bikes === val.route)) {
+        if (data.some((val) => params.bikes === val.route)) {
           addBikeHandler();
         }
       }
     }
   }, [BikeData]);
 
-  const setReportPercent = () => {
-    let count = 0;
-    setReport(BikeData!.features).data.forEach((val) => {
-      count += val.percentage;
-    });
-    return count / 50;
-  };
+
+   const setReportPercent = () => {
+        let count = 0;
+        setReport(BikeData!.features).data.forEach((val) => {
+          count += val.percentage;
+        });
+        return count / 50;
+      };
+    
 
   const ratingStarsArrangment = () => {
     const starsData: string[] = ["full", "full"];
     if (starsData.length <= 5) {
-      if (BikeData?.features === "A" || BikeData?.features === "E") {
-        starsData.push("half", "empty", "empty");
-      } else if (BikeData?.features === "C" || BikeData?.features === "J") {
-        starsData.push("full", "full", "half");
-      } else if (BikeData?.features === "H" || BikeData?.features === "D") {
-        starsData.push("full", "half", "empty");
-      } else if (BikeData?.features === "B" || BikeData?.features === "F") {
-        starsData.push("full", "full", "empty");
-      } else {
-        starsData.push("full", "full", "full");
+      switch (BikeData?.features) {
+        case "A":
+        case "E":
+          starsData.push("half", "empty", "empty");
+          break;
+        case "C":
+        case "J":
+          starsData.push("full", "full", "half");
+          break;
+        case "H":
+        case "D":
+          starsData.push("full", "half", "empty");
+          break;
+        case "B":
+        case "F":
+          starsData.push("full", "full", "empty");
+          break;
+        default:
+          starsData.push("full", "full", "full");
       }
     }
     setStarsArrangment(starsData.slice(0, 5));
